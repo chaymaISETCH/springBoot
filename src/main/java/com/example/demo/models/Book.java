@@ -12,14 +12,23 @@ public class Book {
 	private Long id;
 
 
-	private String title,isbn,publisher;
+	private String title,isbn;
+	
+	@OneToOne
+	 @JoinColumn(name = "publisher_id", referencedColumnName = "id")
+	private Publisher publisher;
 
 	@ManyToMany
 	@JoinTable(name="autor_book", joinColumns= @JoinColumn(name="book_id"),
 	inverseJoinColumns = @JoinColumn(name="author_id"))
 	private Set<Author> authors = new HashSet<Author>();
 
-	public Book(String title, String isbn, String publisher, Set<Author> authors) {
+	public Book() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Book(String title, String isbn, Publisher publisher, Set<Author> authors) {
 		super();
 		this.title = title;
 		this.isbn = isbn;
@@ -27,11 +36,16 @@ public class Book {
 		this.authors = authors;
 	}
 
-	public Book(String title, String isbn, String publisher) {
+	public Book(String title, String isbn, Publisher publisher) {
 		super();
 		this.title = title;
 		this.isbn = isbn;
 		this.publisher = publisher;
+	}
+	public Book(String title, String isbn) {
+		super();
+		this.title = title;
+		this.isbn = isbn;
 	}
 
 	@Override
@@ -82,16 +96,10 @@ public class Book {
 		this.isbn = isbn;
 	}
 
-	public String getPublisher() {
-		return publisher;
-	}
 
-	public void setPublisher(String publisher) {
-		this.publisher = publisher;
-	}
 
 	public Set<Author> getAuthors() {
-		return new HashSet(authors);
+		return new HashSet<Author>(authors);
 	}
 
 	public void setAuthors(Set<Author> authors) {

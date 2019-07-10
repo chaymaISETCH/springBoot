@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html 
+    
+      xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="utf-8"/>
+ 
+    <title>My Spring Boot Application</title>
+</head>
+<body>
+   <table border="1">
+   	<tr>
+   		<th>User Name</th>
+   		<th>last Name</th>
+   		<th>id</th>
+   	<tr th:each="author: ${authors}">
+   	<td th:text="${author.firstName}">
+   		Ahmed
+   		
+   		   	<ul th:each="book: ${author.books}">
+   		   		 <li th:text="${book.title}">
+   					book
+   				</li>
+   			</ul>
+   	
+   	</td>
+   		
+   	</td>
+   	 <td th:text="${author.lastName}">
+   		trabelsi
+   	</td>
+	<td th:text="${author.id}">1</td>
+	</tr>
+   </table>
+</body>
+</html>

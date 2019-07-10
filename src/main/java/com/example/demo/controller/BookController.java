@@ -8,26 +8,26 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.demo.models.Author;
-import com.example.demo.repositories.AuthorRepo;
+import com.example.demo.models.Book;
+import com.example.demo.repositories.BookRepo;
 
 @Controller
-public class AuthorController {
+public class BookController {
 	
 	/** hibernate object created by spring
 	the same name as norme */
-	private AuthorRepo authorRepo;
+	private BookRepo bookRepo;
 
-	public AuthorController(AuthorRepo authorRepo) {
-		this.authorRepo = authorRepo;
+	public BookController(BookRepo bookRepo) {
+		this.bookRepo = bookRepo;
 	}
 
-	@RequestMapping(value = "/authors")
-	public String getAuthors(Model model) {
-		System.out.println(authorRepo.findById(1L));
+	@RequestMapping(value = "/books")
+	public String getBooks(Model model) {
+		System.out.println(bookRepo.findById(1L));
 		
-		model.addAttribute("authors",authorRepo.findAll());
-		return "authors";
+		model.addAttribute("books",bookRepo.findAll());
+		return "books";
 		
 	}
 	
